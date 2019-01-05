@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.UserTerminalGradeMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.UserTerminalGrade">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="application_id" jdbcType="VARCHAR" property="applicationId" />
+    <result column="application_gateway_id" jdbcType="VARCHAR" property="applicationGatewayId" />
+    <result column="application_node_id" jdbcType="VARCHAR" property="applicationNodeId" />
+    <result column="application_terminal_id" jdbcType="VARCHAR" property="applicationTerminalId" />
+    <result column="application_place_id" jdbcType="VARCHAR" property="applicationPlaceId" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="is_admin" jdbcType="INTEGER" property="isAdmin" />
+    <result column="limit_time" jdbcType="INTEGER" property="limitTime" />
+    <result column="begin" jdbcType="TIMESTAMP" property="begin" />
+    <result column="end" jdbcType="TIMESTAMP" property="end" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_date" jdbcType="VARCHAR" property="createDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, application_id, application_gateway_id, application_node_id, application_terminal_id, 
+    application_place_id, uid, level, is_admin, limit_time, begin, end, create_user, 
+    create_date
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.UserTerminalGradeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_terminal_grade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_terminal_grade
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_terminal_grade
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.UserTerminalGradeExample">
+    delete from user_terminal_grade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.UserTerminalGrade">
+    insert into user_terminal_grade (id, application_id, application_gateway_id, 
+      application_node_id, application_terminal_id, 
+      application_place_id, uid, level, 
+      is_admin, limit_time, begin, 
+      end, create_user, create_date
+      )
+    values (#{id,jdbcType=VARCHAR}, #{applicationId,jdbcType=VARCHAR}, #{applicationGatewayId,jdbcType=VARCHAR}, 
+      #{applicationNodeId,jdbcType=VARCHAR}, #{applicationTerminalId,jdbcType=VARCHAR}, 
+      #{applicationPlaceId,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{isAdmin,jdbcType=INTEGER}, #{limitTime,jdbcType=INTEGER}, #{begin,jdbcType=TIMESTAMP}, 
+      #{end,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.UserTerminalGrade">
+    insert into user_terminal_grade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applicationId != null">
+        application_id,
+      </if>
+      <if test="applicationGatewayId != null">
+        application_gateway_id,
+      </if>
+      <if test="applicationNodeId != null">
+        application_node_id,
+      </if>
+      <if test="applicationTerminalId != null">
+        application_terminal_id,
+      </if>
+      <if test="applicationPlaceId != null">
+        application_place_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="isAdmin != null">
+        is_admin,
+      </if>
+      <if test="limitTime != null">
+        limit_time,
+      </if>
+      <if test="begin != null">
+        begin,
+      </if>
+      <if test="end != null">
+        end,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationId != null">
+        #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationGatewayId != null">
+        #{applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationNodeId != null">
+        #{applicationNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTerminalId != null">
+        #{applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationPlaceId != null">
+        #{applicationPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="limitTime != null">
+        #{limitTime,jdbcType=INTEGER},
+      </if>
+      <if test="begin != null">
+        #{begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end != null">
+        #{end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.UserTerminalGradeExample" resultType="java.lang.Long">
+    select count(*) from user_terminal_grade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_terminal_grade
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationId != null">
+        application_id = #{record.applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationGatewayId != null">
+        application_gateway_id = #{record.applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationNodeId != null">
+        application_node_id = #{record.applicationNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationTerminalId != null">
+        application_terminal_id = #{record.applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationPlaceId != null">
+        application_place_id = #{record.applicationPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.isAdmin != null">
+        is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.limitTime != null">
+        limit_time = #{record.limitTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.begin != null">
+        begin = #{record.begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.end != null">
+        end = #{record.end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_terminal_grade
+    set id = #{record.id,jdbcType=VARCHAR},
+      application_id = #{record.applicationId,jdbcType=VARCHAR},
+      application_gateway_id = #{record.applicationGatewayId,jdbcType=VARCHAR},
+      application_node_id = #{record.applicationNodeId,jdbcType=VARCHAR},
+      application_terminal_id = #{record.applicationTerminalId,jdbcType=VARCHAR},
+      application_place_id = #{record.applicationPlaceId,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      limit_time = #{record.limitTime,jdbcType=INTEGER},
+      begin = #{record.begin,jdbcType=TIMESTAMP},
+      end = #{record.end,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ygzc.dao.model.ygzc.UserTerminalGrade">
+    update user_terminal_grade
+    <set>
+      <if test="applicationId != null">
+        application_id = #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationGatewayId != null">
+        application_gateway_id = #{applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationNodeId != null">
+        application_node_id = #{applicationNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTerminalId != null">
+        application_terminal_id = #{applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationPlaceId != null">
+        application_place_id = #{applicationPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        is_admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="limitTime != null">
+        limit_time = #{limitTime,jdbcType=INTEGER},
+      </if>
+      <if test="begin != null">
+        begin = #{begin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end != null">
+        end = #{end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.UserTerminalGrade">
+    update user_terminal_grade
+    set application_id = #{applicationId,jdbcType=VARCHAR},
+      application_gateway_id = #{applicationGatewayId,jdbcType=VARCHAR},
+      application_node_id = #{applicationNodeId,jdbcType=VARCHAR},
+      application_terminal_id = #{applicationTerminalId,jdbcType=VARCHAR},
+      application_place_id = #{applicationPlaceId,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      is_admin = #{isAdmin,jdbcType=INTEGER},
+      limit_time = #{limitTime,jdbcType=INTEGER},
+      begin = #{begin,jdbcType=TIMESTAMP},
+      end = #{end,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.AirTableMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.AirTable">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="SERIAL" jdbcType="INTEGER" property="serial" />
+    <result column="BRAND_CN" jdbcType="VARCHAR" property="brandCn" />
+    <result column="BRAND_EN" jdbcType="VARCHAR" property="brandEn" />
+    <result column="MODEL" jdbcType="CHAR" property="model" />
+    <result column="PINYIN" jdbcType="VARCHAR" property="pinyin" />
+    <result column="CODE" jdbcType="CHAR" property="code" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, SERIAL, BRAND_CN, BRAND_EN, MODEL, PINYIN, CODE
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.AirTableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from air_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from air_table
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from air_table
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.AirTableExample">
+    delete from air_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.AirTable">
+    insert into air_table (ID, SERIAL, BRAND_CN, 
+      BRAND_EN, MODEL, PINYIN, 
+      CODE)
+    values (#{id,jdbcType=INTEGER}, #{serial,jdbcType=INTEGER}, #{brandCn,jdbcType=VARCHAR}, 
+      #{brandEn,jdbcType=VARCHAR}, #{model,jdbcType=CHAR}, #{pinyin,jdbcType=VARCHAR}, 
+      #{code,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.AirTable">
+    insert into air_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="serial != null">
+        SERIAL,
+      </if>
+      <if test="brandCn != null">
+        BRAND_CN,
+      </if>
+      <if test="brandEn != null">
+        BRAND_EN,
+      </if>
+      <if test="model != null">
+        MODEL,
+      </if>
+      <if test="pinyin != null">
+        PINYIN,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serial != null">
+        #{serial,jdbcType=INTEGER},
+      </if>
+      <if test="brandCn != null">
+        #{brandCn,jdbcType=VARCHAR},
+      </if>
+      <if test="brandEn != null">
+        #{brandEn,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=CHAR},
+      </if>
+      <if test="pinyin != null">
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.AirTableExample" resultType="java.lang.Long">
+    select count(*) from air_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update air_table
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serial != null">
+        SERIAL = #{record.serial,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandCn != null">
+        BRAND_CN = #{record.brandCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandEn != null">
+        BRAND_EN = #{record.brandEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.model != null">
+        MODEL = #{record.model,jdbcType=CHAR},
+      </if>
+      <if test="record.pinyin != null">
+        PINYIN = #{record.pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        CODE = #{record.code,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update air_table
+    set ID = #{record.id,jdbcType=INTEGER},
+      SERIAL = #{record.serial,jdbcType=INTEGER},
+      BRAND_CN = #{record.brandCn,jdbcType=VARCHAR},
+      BRAND_EN = #{record.brandEn,jdbcType=VARCHAR},
+      MODEL = #{record.model,jdbcType=CHAR},
+      PINYIN = #{record.pinyin,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ygzc.dao.model.ygzc.AirTable">
+    update air_table
+    <set>
+      <if test="serial != null">
+        SERIAL = #{serial,jdbcType=INTEGER},
+      </if>
+      <if test="brandCn != null">
+        BRAND_CN = #{brandCn,jdbcType=VARCHAR},
+      </if>
+      <if test="brandEn != null">
+        BRAND_EN = #{brandEn,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        MODEL = #{model,jdbcType=CHAR},
+      </if>
+      <if test="pinyin != null">
+        PINYIN = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        CODE = #{code,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.AirTable">
+    update air_table
+    set SERIAL = #{serial,jdbcType=INTEGER},
+      BRAND_CN = #{brandCn,jdbcType=VARCHAR},
+      BRAND_EN = #{brandEn,jdbcType=VARCHAR},
+      MODEL = #{model,jdbcType=CHAR},
+      PINYIN = #{pinyin,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=CHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.UserNodeMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.UserNode">
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
+    <id column="application_node_id" jdbcType="VARCHAR" property="applicationNodeId" />
+    <result column="application_id" jdbcType="VARCHAR" property="applicationId" />
+    <result column="application_gateway_id" jdbcType="VARCHAR" property="applicationGatewayId" />
+    <result column="application_place_id" jdbcType="VARCHAR" property="applicationPlaceId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    uid, application_node_id, application_id, application_gateway_id, application_place_id, 
+    create_user, create_date
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.UserNodeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_node
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.UserNodeKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_node
+    where uid = #{uid,jdbcType=VARCHAR}
+      and application_node_id = #{applicationNodeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.UserNodeKey">
+    delete from user_node
+    where uid = #{uid,jdbcType=VARCHAR}
+      and application_node_id = #{applicationNodeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.UserNodeExample">
+    delete from user_node
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.UserNode">
+    insert into user_node (uid, application_node_id, application_id, 
+      application_gateway_id, application_place_id, 
+      create_user, create_date)
+    values (#{uid,jdbcType=VARCHAR}, #{applicationNodeId,jdbcType=VARCHAR}, #{applicationId,jdbcType=VARCHAR}, 
+      #{applicationGatewayId,jdbcType=VARCHAR}, #{applicationPlaceId,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.UserNode">
+    insert into user_node
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="applicationNodeId != null">
+        application_node_id,
+      </if>
+      <if test="applicationId != null">
+        application_id,
+      </if>
+      <if test="applicationGatewayId != null">
+        application_gateway_id,
+      </if>
+      <if test="applicationPlaceId != null">
+        application_place_id,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationNodeId != null">
+        #{applicationNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationId != null">
+        #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationGatewayId != null">
+        #{applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationPlaceId != null">
+        #{applicationPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.UserNodeExample" resultType="java.lang.Long">
+    select count(*) from user_node
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_node
+    <set>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationNodeId != null">
+        application_node_id = #{record.applicationNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationId != null">
+        application_id = #{record.applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationGatewayId != null">
+        application_gateway_id = #{record.applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationPlaceId != null">
+        application_place_id = #{record.applicationPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_node
+    set uid = #{record.uid,jdbcType=VARCHAR},
+      application_node_id = #{record.applicationNodeId,jdbcType=VARCHAR},
+      application_id = #{record.applicationId,jdbcType=VARCHAR},
+      application_gateway_id = #{record.applicationGatewayId,jdbcType=VARCHAR},
+      application_place_id = #{record.applicationPlaceId,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ygzc.dao.model.ygzc.UserNode">
+    update user_node
+    <set>
+      <if test="applicationId != null">
+        application_id = #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationGatewayId != null">
+        application_gateway_id = #{applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationPlaceId != null">
+        application_place_id = #{applicationPlaceId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+      and application_node_id = #{applicationNodeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.UserNode">
+    update user_node
+    set application_id = #{applicationId,jdbcType=VARCHAR},
+      application_gateway_id = #{applicationGatewayId,jdbcType=VARCHAR},
+      application_place_id = #{applicationPlaceId,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where uid = #{uid,jdbcType=VARCHAR}
+      and application_node_id = #{applicationNodeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

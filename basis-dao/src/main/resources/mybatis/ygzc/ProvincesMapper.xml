@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.ProvincesMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.Provinces">
+    <id column="provinces_id" jdbcType="INTEGER" property="provincesId" />
+    <result column="nation_id" jdbcType="INTEGER" property="nationId" />
+    <result column="provinces_code" jdbcType="VARCHAR" property="provincesCode" />
+    <result column="provinces_name" jdbcType="VARCHAR" property="provincesName" />
+    <result column="chara" jdbcType="VARCHAR" property="chara" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    provinces_id, nation_id, provinces_code, provinces_name, chara
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.ProvincesExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from provinces
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from provinces
+    where provinces_id = #{provincesId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from provinces
+    where provinces_id = #{provincesId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.ProvincesExample">
+    delete from provinces
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.Provinces">
+    insert into provinces (provinces_id, nation_id, provinces_code, 
+      provinces_name, chara)
+    values (#{provincesId,jdbcType=INTEGER}, #{nationId,jdbcType=INTEGER}, #{provincesCode,jdbcType=VARCHAR}, 
+      #{provincesName,jdbcType=VARCHAR}, #{chara,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.Provinces">
+    insert into provinces
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="provincesId != null">
+        provinces_id,
+      </if>
+      <if test="nationId != null">
+        nation_id,
+      </if>
+      <if test="provincesCode != null">
+        provinces_code,
+      </if>
+      <if test="provincesName != null">
+        provinces_name,
+      </if>
+      <if test="chara != null">
+        chara,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="provincesId != null">
+        #{provincesId,jdbcType=INTEGER},
+      </if>
+      <if test="nationId != null">
+        #{nationId,jdbcType=INTEGER},
+      </if>
+      <if test="provincesCode != null">
+        #{provincesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provincesName != null">
+        #{provincesName,jdbcType=VARCHAR},
+      </if>
+      <if test="chara != null">
+        #{chara,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.ProvincesExample" resultType="java.lang.Long">
+    select count(*) from provinces
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update provinces
+    <set>
+      <if test="record.provincesId != null">
+        provinces_id = #{record.provincesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.nationId != null">
+        nation_id = #{record.nationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.provincesCode != null">
+        provinces_code = #{record.provincesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provincesName != null">
+        provinces_name = #{record.provincesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chara != null">
+        chara = #{record.chara,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update provinces
+    set provinces_id = #{record.provincesId,jdbcType=INTEGER},
+      nation_id = #{record.nationId,jdbcType=INTEGER},
+      provinces_code = #{record.provincesCode,jdbcType=VARCHAR},
+      provinces_name = #{record.provincesName,jdbcType=VARCHAR},
+      chara = #{record.chara,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ygzc.dao.model.ygzc.Provinces">
+    update provinces
+    <set>
+      <if test="nationId != null">
+        nation_id = #{nationId,jdbcType=INTEGER},
+      </if>
+      <if test="provincesCode != null">
+        provinces_code = #{provincesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provincesName != null">
+        provinces_name = #{provincesName,jdbcType=VARCHAR},
+      </if>
+      <if test="chara != null">
+        chara = #{chara,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where provinces_id = #{provincesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.Provinces">
+    update provinces
+    set nation_id = #{nationId,jdbcType=INTEGER},
+      provinces_code = #{provincesCode,jdbcType=VARCHAR},
+      provinces_name = #{provincesName,jdbcType=VARCHAR},
+      chara = #{chara,jdbcType=VARCHAR}
+    where provinces_id = #{provincesId,jdbcType=INTEGER}
+  </update>
+</mapper>

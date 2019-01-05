@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.DeploymentAlarmLogMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.DeploymentAlarmLog">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="application_id" jdbcType="VARCHAR" property="applicationId" />
+    <result column="application_gateway_id" jdbcType="VARCHAR" property="applicationGatewayId" />
+    <result column="application_node_id" jdbcType="VARCHAR" property="applicationNodeId" />
+    <result column="application_terminal_id" jdbcType="VARCHAR" property="applicationTerminalId" />
+    <result column="deployment_id" jdbcType="VARCHAR" property="deploymentId" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, application_id, application_gateway_id, application_node_id, application_terminal_id, 
+    deployment_id, flag, create_date, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.DeploymentAlarmLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from deployment_alarm_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from deployment_alarm_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from deployment_alarm_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.DeploymentAlarmLogExample">
+    delete from deployment_alarm_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.DeploymentAlarmLog">
+    insert into deployment_alarm_log (id, application_id, application_gateway_id, 
+      application_node_id, application_terminal_id, 
+      deployment_id, flag, create_date, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{applicationId,jdbcType=VARCHAR}, #{applicationGatewayId,jdbcType=VARCHAR}, 
+      #{applicationNodeId,jdbcType=VARCHAR}, #{applicationTerminalId,jdbcType=VARCHAR}, 
+      #{deploymentId,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.DeploymentAlarmLog">
+    insert into deployment_alarm_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applicationId != null">
+        application_id,
+      </if>
+      <if test="applicationGatewayId != null">
+        application_gateway_id,
+      </if>
+      <if test="applicationNodeId != null">
+        application_node_id,
+      </if>
+      <if test="applicationTerminalId != null">
+        application_terminal_id,
+      </if>
+      <if test="deploymentId != null">
+        deployment_id,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationId != null">
+        #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationGatewayId != null">
+        #{applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationNodeId != null">
+        #{applicationNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTerminalId != null">
+        #{applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="deploymentId != null">
+        #{deploymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.DeploymentAlarmLogExample" resultType="java.lang.Long">
+    select count(*) from deployment_alarm_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update deployment_alarm_log
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationId != null">
+        application_id = #{record.applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationGatewayId != null">
+        application_gateway_id = #{record.applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationNodeId != null">
+        application_node_id = #{record.applicationNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationTerminalId != null">
+        application_terminal_id = #{record.applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deploymentId != null">
+        deployment_id = #{record.deploymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update deployment_alarm_log
+    set id = #{record.id,jdbcType=VARCHAR},
+      application_id = #{record.applicationId,jdbcType=VARCHAR},
+      application_gateway_id = #{record.applicationGatewayId,jdbcType=VARCHAR},
+      application_node_id = #{record.applicationNodeId,jdbcType=VARCHAR},
+      application_terminal_id = #{record.applicationTerminalId,jdbcType=VARCHAR},
+      deployment_id = #{record.deploymentId,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ygzc.dao.model.ygzc.DeploymentAlarmLog">
+    update deployment_alarm_log
+    <set>
+      <if test="applicationId != null">
+        application_id = #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationGatewayId != null">
+        application_gateway_id = #{applicationGatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationNodeId != null">
+        application_node_id = #{applicationNodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTerminalId != null">
+        application_terminal_id = #{applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="deploymentId != null">
+        deployment_id = #{deploymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.DeploymentAlarmLog">
+    update deployment_alarm_log
+    set application_id = #{applicationId,jdbcType=VARCHAR},
+      application_gateway_id = #{applicationGatewayId,jdbcType=VARCHAR},
+      application_node_id = #{applicationNodeId,jdbcType=VARCHAR},
+      application_terminal_id = #{applicationTerminalId,jdbcType=VARCHAR},
+      deployment_id = #{deploymentId,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.OtherLoginMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.OtherLogin">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="type_login" jdbcType="INTEGER" property="typeLogin" />
+    <result column="other_name" jdbcType="VARCHAR" property="otherName" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="other_account" jdbcType="VARCHAR" property="otherAccount" />
+    <result column="other_city" jdbcType="INTEGER" property="otherCity" />
+    <result column="other_gender" jdbcType="VARCHAR" property="otherGender" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, type_login, other_name, uid, other_account, other_city, other_gender, create_date, 
+    update_date
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.OtherLoginExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from other_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.OtherLoginExample">
+    delete from other_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.OtherLogin">
+    insert into other_login (id, type_login, other_name, 
+      uid, other_account, other_city, 
+      other_gender, create_date, update_date
+      )
+    values (#{id,jdbcType=VARCHAR}, #{typeLogin,jdbcType=INTEGER}, #{otherName,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=VARCHAR}, #{otherAccount,jdbcType=VARCHAR}, #{otherCity,jdbcType=INTEGER}, 
+      #{otherGender,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.OtherLogin">
+    insert into other_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="typeLogin != null">
+        type_login,
+      </if>
+      <if test="otherName != null">
+        other_name,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="otherAccount != null">
+        other_account,
+      </if>
+      <if test="otherCity != null">
+        other_city,
+      </if>
+      <if test="otherGender != null">
+        other_gender,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="typeLogin != null">
+        #{typeLogin,jdbcType=INTEGER},
+      </if>
+      <if test="otherName != null">
+        #{otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAccount != null">
+        #{otherAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCity != null">
+        #{otherCity,jdbcType=INTEGER},
+      </if>
+      <if test="otherGender != null">
+        #{otherGender,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.OtherLoginExample" resultType="java.lang.Long">
+    select count(*) from other_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update other_login
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeLogin != null">
+        type_login = #{record.typeLogin,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherName != null">
+        other_name = #{record.otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherAccount != null">
+        other_account = #{record.otherAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherCity != null">
+        other_city = #{record.otherCity,jdbcType=INTEGER},
+      </if>
+      <if test="record.otherGender != null">
+        other_gender = #{record.otherGender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update other_login
+    set id = #{record.id,jdbcType=VARCHAR},
+      type_login = #{record.typeLogin,jdbcType=INTEGER},
+      other_name = #{record.otherName,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=VARCHAR},
+      other_account = #{record.otherAccount,jdbcType=VARCHAR},
+      other_city = #{record.otherCity,jdbcType=INTEGER},
+      other_gender = #{record.otherGender,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

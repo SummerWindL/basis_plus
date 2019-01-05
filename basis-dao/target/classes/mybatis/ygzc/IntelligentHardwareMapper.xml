@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.IntelligentHardwareMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.IntelligentHardware">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="series_id" jdbcType="INTEGER" property="seriesId" />
+    <result column="uniq_id" jdbcType="VARCHAR" property="uniqId" />
+    <result column="produce_date" jdbcType="TIMESTAMP" property="produceDate" />
+    <result column="hardware_ver" jdbcType="VARCHAR" property="hardwareVer" />
+    <result column="software_ver" jdbcType="VARCHAR" property="softwareVer" />
+    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+    <result column="batch" jdbcType="VARCHAR" property="batch" />
+    <result column="net_falg" jdbcType="INTEGER" property="netFalg" />
+    <result column="online" jdbcType="TINYINT" property="online" />
+    <result column="intelligent_hardware_id" jdbcType="VARCHAR" property="intelligentHardwareId" />
+    <result column="bind_times" jdbcType="INTEGER" property="bindTimes" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="factory_date" jdbcType="DATE" property="factoryDate" />
+    <result column="is_flag" jdbcType="INTEGER" property="isFlag" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="update_date" jdbcType="DATE" property="updateDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, type_id, series_id, uniq_id, produce_date, hardware_ver, software_ver, supplier_id, 
+    batch, net_falg, online, intelligent_hardware_id, bind_times, end_date, factory_date, 
+    is_flag, create_date, update_date
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.IntelligentHardwareExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from intelligent_hardware
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from intelligent_hardware
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from intelligent_hardware
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.IntelligentHardwareExample">
+    delete from intelligent_hardware
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.IntelligentHardware">
+    insert into intelligent_hardware (id, type_id, series_id, 
+      uniq_id, produce_date, hardware_ver, 
+      software_ver, supplier_id, batch, 
+      net_falg, online, intelligent_hardware_id, 
+      bind_times, end_date, factory_date, 
+      is_flag, create_date, update_date
+      )
+    values (#{id,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, #{seriesId,jdbcType=INTEGER}, 
+      #{uniqId,jdbcType=VARCHAR}, #{produceDate,jdbcType=TIMESTAMP}, #{hardwareVer,jdbcType=VARCHAR}, 
+      #{softwareVer,jdbcType=VARCHAR}, #{supplierId,jdbcType=INTEGER}, #{batch,jdbcType=VARCHAR}, 
+      #{netFalg,jdbcType=INTEGER}, #{online,jdbcType=TINYINT}, #{intelligentHardwareId,jdbcType=VARCHAR}, 
+      #{bindTimes,jdbcType=INTEGER}, #{endDate,jdbcType=TIMESTAMP}, #{factoryDate,jdbcType=DATE}, 
+      #{isFlag,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{updateDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.IntelligentHardware">
+    insert into intelligent_hardware
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="seriesId != null">
+        series_id,
+      </if>
+      <if test="uniqId != null">
+        uniq_id,
+      </if>
+      <if test="produceDate != null">
+        produce_date,
+      </if>
+      <if test="hardwareVer != null">
+        hardware_ver,
+      </if>
+      <if test="softwareVer != null">
+        software_ver,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="batch != null">
+        batch,
+      </if>
+      <if test="netFalg != null">
+        net_falg,
+      </if>
+      <if test="online != null">
+        online,
+      </if>
+      <if test="intelligentHardwareId != null">
+        intelligent_hardware_id,
+      </if>
+      <if test="bindTimes != null">
+        bind_times,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="factoryDate != null">
+        factory_date,
+      </if>
+      <if test="isFlag != null">
+        is_flag,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesId != null">
+        #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="uniqId != null">
+        #{uniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null">
+        #{produceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hardwareVer != null">
+        #{hardwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="softwareVer != null">
+        #{softwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="batch != null">
+        #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="netFalg != null">
+        #{netFalg,jdbcType=INTEGER},
+      </if>
+      <if test="online != null">
+        #{online,jdbcType=TINYINT},
+      </if>
+      <if test="intelligentHardwareId != null">
+        #{intelligentHardwareId,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTimes != null">
+        #{bindTimes,jdbcType=INTEGER},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factoryDate != null">
+        #{factoryDate,jdbcType=DATE},
+      </if>
+      <if test="isFlag != null">
+        #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.IntelligentHardwareExample" resultType="java.lang.Long">
+    select count(*) from intelligent_hardware
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update intelligent_hardware
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null">
+        type_id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seriesId != null">
+        series_id = #{record.seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.uniqId != null">
+        uniq_id = #{record.uniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.produceDate != null">
+        produce_date = #{record.produceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hardwareVer != null">
+        hardware_ver = #{record.hardwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.softwareVer != null">
+        software_ver = #{record.softwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierId != null">
+        supplier_id = #{record.supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="record.batch != null">
+        batch = #{record.batch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netFalg != null">
+        net_falg = #{record.netFalg,jdbcType=INTEGER},
+      </if>
+      <if test="record.online != null">
+        online = #{record.online,jdbcType=TINYINT},
+      </if>
+      <if test="record.intelligentHardwareId != null">
+        intelligent_hardware_id = #{record.intelligentHardwareId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindTimes != null">
+        bind_times = #{record.bindTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.endDate != null">
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.factoryDate != null">
+        factory_date = #{record.factoryDate,jdbcType=DATE},
+      </if>
+      <if test="record.isFlag != null">
+        is_flag = #{record.isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update intelligent_hardware
+    set id = #{record.id,jdbcType=VARCHAR},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      series_id = #{record.seriesId,jdbcType=INTEGER},
+      uniq_id = #{record.uniqId,jdbcType=VARCHAR},
+      produce_date = #{record.produceDate,jdbcType=TIMESTAMP},
+      hardware_ver = #{record.hardwareVer,jdbcType=VARCHAR},
+      software_ver = #{record.softwareVer,jdbcType=VARCHAR},
+      supplier_id = #{record.supplierId,jdbcType=INTEGER},
+      batch = #{record.batch,jdbcType=VARCHAR},
+      net_falg = #{record.netFalg,jdbcType=INTEGER},
+      online = #{record.online,jdbcType=TINYINT},
+      intelligent_hardware_id = #{record.intelligentHardwareId,jdbcType=VARCHAR},
+      bind_times = #{record.bindTimes,jdbcType=INTEGER},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      factory_date = #{record.factoryDate,jdbcType=DATE},
+      is_flag = #{record.isFlag,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=DATE},
+      update_date = #{record.updateDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ygzc.dao.model.ygzc.IntelligentHardware">
+    update intelligent_hardware
+    <set>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="seriesId != null">
+        series_id = #{seriesId,jdbcType=INTEGER},
+      </if>
+      <if test="uniqId != null">
+        uniq_id = #{uniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null">
+        produce_date = #{produceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hardwareVer != null">
+        hardware_ver = #{hardwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="softwareVer != null">
+        software_ver = #{softwareVer,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="batch != null">
+        batch = #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="netFalg != null">
+        net_falg = #{netFalg,jdbcType=INTEGER},
+      </if>
+      <if test="online != null">
+        online = #{online,jdbcType=TINYINT},
+      </if>
+      <if test="intelligentHardwareId != null">
+        intelligent_hardware_id = #{intelligentHardwareId,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTimes != null">
+        bind_times = #{bindTimes,jdbcType=INTEGER},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factoryDate != null">
+        factory_date = #{factoryDate,jdbcType=DATE},
+      </if>
+      <if test="isFlag != null">
+        is_flag = #{isFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.IntelligentHardware">
+    update intelligent_hardware
+    set type_id = #{typeId,jdbcType=INTEGER},
+      series_id = #{seriesId,jdbcType=INTEGER},
+      uniq_id = #{uniqId,jdbcType=VARCHAR},
+      produce_date = #{produceDate,jdbcType=TIMESTAMP},
+      hardware_ver = #{hardwareVer,jdbcType=VARCHAR},
+      software_ver = #{softwareVer,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=INTEGER},
+      batch = #{batch,jdbcType=VARCHAR},
+      net_falg = #{netFalg,jdbcType=INTEGER},
+      online = #{online,jdbcType=TINYINT},
+      intelligent_hardware_id = #{intelligentHardwareId,jdbcType=VARCHAR},
+      bind_times = #{bindTimes,jdbcType=INTEGER},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      factory_date = #{factoryDate,jdbcType=DATE},
+      is_flag = #{isFlag,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=DATE},
+      update_date = #{updateDate,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

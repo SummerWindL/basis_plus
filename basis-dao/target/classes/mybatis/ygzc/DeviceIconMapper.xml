@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.DeviceIconMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.DeviceIcon">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="picture_name" jdbcType="VARCHAR" property="pictureName" />
+    <result column="url1" jdbcType="VARCHAR" property="url1" />
+    <result column="url2" jdbcType="VARCHAR" property="url2" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="width" jdbcType="INTEGER" property="width" />
+    <result column="ext" jdbcType="INTEGER" property="ext" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="security" jdbcType="INTEGER" property="security" />
+    <result column="common" jdbcType="INTEGER" property="common" />
+    <result column="security_msg" jdbcType="VARCHAR" property="securityMsg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, device_name, picture_name, url1, url2, height, width, ext, created, state, security, 
+    common, security_msg
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.DeviceIconExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from "device_ icon"
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from "device_ icon"
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from "device_ icon"
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.DeviceIconExample">
+    delete from "device_ icon"
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.DeviceIcon">
+    insert into "device_ icon" (id, device_name, picture_name, 
+      url1, url2, height, 
+      width, ext, created, 
+      state, security, common, 
+      security_msg)
+    values (#{id,jdbcType=INTEGER}, #{deviceName,jdbcType=VARCHAR}, #{pictureName,jdbcType=VARCHAR}, 
+      #{url1,jdbcType=VARCHAR}, #{url2,jdbcType=VARCHAR}, #{height,jdbcType=INTEGER}, 
+      #{width,jdbcType=INTEGER}, #{ext,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER}, #{security,jdbcType=INTEGER}, #{common,jdbcType=INTEGER}, 
+      #{securityMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.DeviceIcon">
+    insert into "device_ icon"
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deviceName != null">
+        device_name,
+      </if>
+      <if test="pictureName != null">
+        picture_name,
+      </if>
+      <if test="url1 != null">
+        url1,
+      </if>
+      <if test="url2 != null">
+        url2,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="security != null">
+        security,
+      </if>
+      <if test="common != null">
+        common,
+      </if>
+      <if test="securityMsg != null">
+        security_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureName != null">
+        #{pictureName,jdbcType=VARCHAR},
+      </if>
+      <if test="url1 != null">
+        #{url1,jdbcType=VARCHAR},
+      </if>
+      <if test="url2 != null">
+        #{url2,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=INTEGER},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="security != null">
+        #{security,jdbcType=INTEGER},
+      </if>
+      <if test="common != null">
+        #{common,jdbcType=INTEGER},
+      </if>
+      <if test="securityMsg != null">
+        #{securityMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.DeviceIconExample" resultType="java.lang.Long">
+    select count(*) from "device_ icon"
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update "device_ icon"
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceName != null">
+        device_name = #{record.deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pictureName != null">
+        picture_name = #{record.pictureName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url1 != null">
+        url1 = #{record.url1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url2 != null">
+        url2 = #{record.url2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.height != null">
+        height = #{record.height,jdbcType=INTEGER},
+      </if>
+      <if test="record.width != null">
+        width = #{record.width,jdbcType=INTEGER},
+      </if>
+      <if test="record.ext != null">
+        ext = #{record.ext,jdbcType=INTEGER},
+      </if>
+      <if test="record.created != null">
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.security != null">
+        security = #{record.security,jdbcType=INTEGER},
+      </if>
+      <if test="record.common != null">
+        common = #{record.common,jdbcType=INTEGER},
+      </if>
+      <if test="record.securityMsg != null">
+        security_msg = #{record.securityMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update "device_ icon"
+    set id = #{record.id,jdbcType=INTEGER},
+      device_name = #{record.deviceName,jdbcType=VARCHAR},
+      picture_name = #{record.pictureName,jdbcType=VARCHAR},
+      url1 = #{record.url1,jdbcType=VARCHAR},
+      url2 = #{record.url2,jdbcType=VARCHAR},
+      height = #{record.height,jdbcType=INTEGER},
+      width = #{record.width,jdbcType=INTEGER},
+      ext = #{record.ext,jdbcType=INTEGER},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      state = #{record.state,jdbcType=INTEGER},
+      security = #{record.security,jdbcType=INTEGER},
+      common = #{record.common,jdbcType=INTEGER},
+      security_msg = #{record.securityMsg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ygzc.dao.model.ygzc.DeviceIcon">
+    update "device_ icon"
+    <set>
+      <if test="deviceName != null">
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureName != null">
+        picture_name = #{pictureName,jdbcType=VARCHAR},
+      </if>
+      <if test="url1 != null">
+        url1 = #{url1,jdbcType=VARCHAR},
+      </if>
+      <if test="url2 != null">
+        url2 = #{url2,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=INTEGER},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="security != null">
+        security = #{security,jdbcType=INTEGER},
+      </if>
+      <if test="common != null">
+        common = #{common,jdbcType=INTEGER},
+      </if>
+      <if test="securityMsg != null">
+        security_msg = #{securityMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.DeviceIcon">
+    update "device_ icon"
+    set device_name = #{deviceName,jdbcType=VARCHAR},
+      picture_name = #{pictureName,jdbcType=VARCHAR},
+      url1 = #{url1,jdbcType=VARCHAR},
+      url2 = #{url2,jdbcType=VARCHAR},
+      height = #{height,jdbcType=INTEGER},
+      width = #{width,jdbcType=INTEGER},
+      ext = #{ext,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      security = #{security,jdbcType=INTEGER},
+      common = #{common,jdbcType=INTEGER},
+      security_msg = #{securityMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

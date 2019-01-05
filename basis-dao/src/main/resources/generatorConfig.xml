@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+ Copyright (c) 2017 Yanzheng [/yan]
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ -->
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- 引入 properties 配置文件 -->
+    <properties resource="properties/mbg.properties"/>
+
+    <!-- 数据库链接驱动包（使用在插件中直接引入方式） -->
+    <!-- <classPathEntry location="${mbg.jar}"/> -->
+
+    <context id="MySqlTables" targetRuntime="MyBatis3">
+
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!-- 重命名插件 -->
+        <!--
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <property name="replaceString" value="Criteria" />
+        </plugin>
+        -->
+
+        <!-- 为生成的Java模型类添加序列化接口 -->
+        <!-- <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/> -->
+        <!-- 使用自己扩展的序列化插件，对 Example 也实现序列化接口 -->
+        <plugin type="com.ygzc.plugins.mybatis.generator.SerializablePlugin"/>
+
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <!-- 这里的type里写的是你的实现类的类全路径 -->
+        <commentGenerator type="com.ygzc.plugins.mybatis.generator.CommentGenerator">
+        	<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${mbg.db.driverClassName}" connectionURL="${mbg.db.url}"
+                        userId="${mbg.db.username}" password="${mbg.db.password}"/>
+
+        <!-- java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl； 注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型； -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.ygzc.dao.model.ygzc" targetProject="${mbg.path}/java">
+        	<!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+		<!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="mybatis.ygzc" targetProject="${mbg.path}/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator targetPackage="com.ygzc.dao.mapper.ygzc" targetProject="${mbg.path}/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <table schema="" tableName="air_table"/>
+		<table schema="" tableName="app_version"/>
+		<table schema="" tableName="application"/>
+		<table schema="" tableName="application_gateway"/>
+		<table schema="" tableName="application_linkage"/>
+		<table schema="" tableName="application_node"/>
+		<table schema="" tableName="application_place"/>
+		<table schema="" tableName="application_scene"/>
+		<table schema="" tableName="application_terminal"/>
+		<table schema="" tableName="arc_code"/>
+		<table schema="" tableName="arc_library_table_name"/>
+		<table schema="" tableName="arc_match_table"/>
+		<table schema="" tableName="arc_table"/>
+		<table schema="" tableName="area_icon"/>
+		<table schema="" tableName="camera"/>
+		<table schema="" tableName="character"/>
+		<table schema="" tableName="city"/>
+		<table schema="" tableName="deployment"/>
+		<table schema="" tableName="deployment_alarm_log"/>
+		<table schema="" tableName="deployment_terminal"/>
+		<table schema="" tableName="device_ icon"/>
+		<table schema="" tableName="district"/>
+		<table schema="" tableName="fan_table"/>
+		<table schema="" tableName="grade"/>
+		<table schema="" tableName="hard_series"/>
+		<table schema="" tableName="hard_type"/>
+		<table schema="" tableName="head_image"/>
+		<table schema="" tableName="intelligent_hardware"/>
+		<table schema="" tableName="iptv_table"/>
+		<table schema="" tableName="linkage_terminal"/>
+		<table schema="" tableName="nation"/>
+		<table schema="" tableName="other_login"/>
+		<table schema="" tableName="pjt_table"/>
+		<table schema="" tableName="provinces"/>
+		<table schema="" tableName="scene_icon"/>
+		<table schema="" tableName="scene_terminal"/>
+		<table schema="" tableName="scene_timer"/>
+		<table schema="" tableName="scene_timer_list"/>
+		<table schema="" tableName="security_alert_log"/>
+		<table schema="" tableName="slr_table"/>
+		<table schema="" tableName="temp_rf"/>
+		<table schema="" tableName="tv_table"/>
+		<table schema="" tableName="tvbox_table"/>
+		<table schema="" tableName="user"/>
+		<table schema="" tableName="user_application"/>
+		<table schema="" tableName="user_gateway"/>
+		<table schema="" tableName="user_node"/>
+		<table schema="" tableName="user_place"/>
+		<table schema="" tableName="user_profile"/>
+		<table schema="" tableName="user_terminal_grade"/>
+		<table schema="" tableName="user_tokens"/>
+    </context>
+</generatorConfiguration>

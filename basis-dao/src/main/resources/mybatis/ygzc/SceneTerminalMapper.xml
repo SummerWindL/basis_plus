@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygzc.dao.mapper.ygzc.SceneTerminalMapper">
+  <resultMap id="BaseResultMap" type="com.ygzc.dao.model.ygzc.SceneTerminal">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="application_scene_id" jdbcType="VARCHAR" property="applicationSceneId" />
+    <result column="category" jdbcType="INTEGER" property="category" />
+    <result column="gateway_uniq_id" jdbcType="VARCHAR" property="gatewayUniqId" />
+    <result column="application_terminal_id" jdbcType="VARCHAR" property="applicationTerminalId" />
+    <result column="node_uniq_id" jdbcType="VARCHAR" property="nodeUniqId" />
+    <result column="no" jdbcType="INTEGER" property="no" />
+    <result column="command" jdbcType="VARCHAR" property="command" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="execute_time" jdbcType="VARCHAR" property="executeTime" />
+    <result column="update_date" jdbcType="TIME" property="updateDate" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_date" jdbcType="TIME" property="createDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, application_scene_id, category, gateway_uniq_id, application_terminal_id, node_uniq_id, 
+    no, command, state, execute_time, update_date, create_user, create_date
+  </sql>
+  <select id="selectByExample" parameterType="com.ygzc.dao.model.ygzc.SceneTerminalExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from scene_terminal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from scene_terminal
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from scene_terminal
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ygzc.dao.model.ygzc.SceneTerminalExample">
+    delete from scene_terminal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ygzc.dao.model.ygzc.SceneTerminal">
+    insert into scene_terminal (id, application_scene_id, category, 
+      gateway_uniq_id, application_terminal_id, node_uniq_id, 
+      no, command, state, 
+      execute_time, update_date, create_user, 
+      create_date)
+    values (#{id,jdbcType=VARCHAR}, #{applicationSceneId,jdbcType=VARCHAR}, #{category,jdbcType=INTEGER}, 
+      #{gatewayUniqId,jdbcType=VARCHAR}, #{applicationTerminalId,jdbcType=VARCHAR}, #{nodeUniqId,jdbcType=VARCHAR}, 
+      #{no,jdbcType=INTEGER}, #{command,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{executeTime,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIME}, #{createUser,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIME})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ygzc.dao.model.ygzc.SceneTerminal">
+    insert into scene_terminal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applicationSceneId != null">
+        application_scene_id,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="gatewayUniqId != null">
+        gateway_uniq_id,
+      </if>
+      <if test="applicationTerminalId != null">
+        application_terminal_id,
+      </if>
+      <if test="nodeUniqId != null">
+        node_uniq_id,
+      </if>
+      <if test="no != null">
+        no,
+      </if>
+      <if test="command != null">
+        command,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="executeTime != null">
+        execute_time,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationSceneId != null">
+        #{applicationSceneId,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="gatewayUniqId != null">
+        #{gatewayUniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTerminalId != null">
+        #{applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeUniqId != null">
+        #{nodeUniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null">
+        #{no,jdbcType=INTEGER},
+      </if>
+      <if test="command != null">
+        #{command,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="executeTime != null">
+        #{executeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIME},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIME},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ygzc.dao.model.ygzc.SceneTerminalExample" resultType="java.lang.Long">
+    select count(*) from scene_terminal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update scene_terminal
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationSceneId != null">
+        application_scene_id = #{record.applicationSceneId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null">
+        category = #{record.category,jdbcType=INTEGER},
+      </if>
+      <if test="record.gatewayUniqId != null">
+        gateway_uniq_id = #{record.gatewayUniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationTerminalId != null">
+        application_terminal_id = #{record.applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeUniqId != null">
+        node_uniq_id = #{record.nodeUniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.no != null">
+        no = #{record.no,jdbcType=INTEGER},
+      </if>
+      <if test="record.command != null">
+        command = #{record.command,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.executeTime != null">
+        execute_time = #{record.executeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIME},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIME},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update scene_terminal
+    set id = #{record.id,jdbcType=VARCHAR},
+      application_scene_id = #{record.applicationSceneId,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=INTEGER},
+      gateway_uniq_id = #{record.gatewayUniqId,jdbcType=VARCHAR},
+      application_terminal_id = #{record.applicationTerminalId,jdbcType=VARCHAR},
+      node_uniq_id = #{record.nodeUniqId,jdbcType=VARCHAR},
+      no = #{record.no,jdbcType=INTEGER},
+      command = #{record.command,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      execute_time = #{record.executeTime,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=TIME},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIME}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ygzc.dao.model.ygzc.SceneTerminal">
+    update scene_terminal
+    <set>
+      <if test="applicationSceneId != null">
+        application_scene_id = #{applicationSceneId,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="gatewayUniqId != null">
+        gateway_uniq_id = #{gatewayUniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTerminalId != null">
+        application_terminal_id = #{applicationTerminalId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeUniqId != null">
+        node_uniq_id = #{nodeUniqId,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null">
+        no = #{no,jdbcType=INTEGER},
+      </if>
+      <if test="command != null">
+        command = #{command,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="executeTime != null">
+        execute_time = #{executeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIME},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIME},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ygzc.dao.model.ygzc.SceneTerminal">
+    update scene_terminal
+    set application_scene_id = #{applicationSceneId,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      gateway_uniq_id = #{gatewayUniqId,jdbcType=VARCHAR},
+      application_terminal_id = #{applicationTerminalId,jdbcType=VARCHAR},
+      node_uniq_id = #{nodeUniqId,jdbcType=VARCHAR},
+      no = #{no,jdbcType=INTEGER},
+      command = #{command,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      execute_time = #{executeTime,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIME},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIME}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

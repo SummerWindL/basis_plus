@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ygzc.basis</groupId>
+  <artifactId>basis</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>basis</name>
+  <description>https://github.com</description>
+  
+  <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <spring.version>4.3.13.RELEASE</spring.version>
+        <aspectj.version>1.8.13</aspectj.version>
+        <shiro.version>1.4.0</shiro.version>
+        <jackson.version>2.9.2</jackson.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <activemq.version>5.15.2</activemq.version>
+    </properties>
+    
+    <dependencies>
+
+        <!-- 添加 junit 依赖包 -->
+        <!--
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        -->
+
+    </dependencies>
+  
+    <modules>
+    	<module>basis-api</module>
+    	<module>basis-common</module>
+    	<module>basis-core</module>
+    	<module>basis-dao</module>
+    	<module>basis-plugins</module>
+    	<module>basis-service</module>
+    	<module>basis-web</module>
+    	<module>basis-auth</module>
+    </modules>
+</project>
